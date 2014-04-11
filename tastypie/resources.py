@@ -1925,7 +1925,7 @@ class BaseModelResource(Resource):
 
         qs_filters = {}
 
-        if getattr(self._meta, 'queryset', None) is not None:
+        if getattr(self._meta, 'queryset', None) is not None and getattr(self._meta.queryset.query.query_terms, 'queryset', None) is not None:
             # Get the possible query terms from the current QuerySet.
             query_terms = self._meta.queryset.query.query_terms
         else:
